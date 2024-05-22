@@ -1,8 +1,17 @@
 # Huisavond
 
 ## Installation
-Install Python:
-[download](https://www.python.org/downloads/)
+Install Python: [download](https://www.python.org/downloads/) <br>
+Install pydub:
+
+``` Console
+pip install pydub
+```
+Install playsound:
+
+``` Console
+pip install playsound
+```
 
 ## Running
 Run both programs in separate console windows.<br>
