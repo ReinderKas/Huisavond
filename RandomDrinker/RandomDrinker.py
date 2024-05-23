@@ -25,8 +25,8 @@ try:
             
             fuckers[fucktard] += 1
 
-            os.system('cls')    # Clear the console
-            print('{0}    has to drink  {1}!\n (Total drinks: {2})\n\n'.format(fucktard, drink, fuckers[fucktard]))   # Print
+            os.system('cls')                                                                                        # Clear the console
+            print('{0}    has to drink  {1}!\n (Total drinks: {2})\n\n'.format(fucktard, drink, fuckers[fucktard])) # Print
             playsound("C:/Users/Reinder/Source/Huisavond/RandomDrinker/rooster_long.wav")                           # Play sound
 
         print ("\033[A                             \033[A")             # Clear last line of output and put pointer to beginning
