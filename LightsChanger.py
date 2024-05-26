@@ -9,6 +9,11 @@ colors = {
     'blue'  : [0, 0, 255],
 }
 
+preRequestValues = {
+    'bri'  : 0,
+    'hue'  : 0,
+    'xy'  : [0, 0],
+}
 
 def rgbToXY(values):
     red = values[0]
@@ -37,46 +42,45 @@ def rgbToXY(values):
     y = Y / (X + Y + Z)
     return [x, y]
 
-def switchRGB():
-    bridge.lights[1].state(xy = rgbToXY(colors['red']))
-    time.sleep(1)
-    bridge.lights[1].state(xy = rgbToXY(colors['green']))
-    time.sleep(1)
-    bridge.lights[1].state(xy = rgbToXY(colors['blue']))
-    time.sleep(1)
+def switchRGB(light):
+    print('Switching RGB ...')
+    for color in colors.values():
+        light.state(xy = rgbToXY(color))
+        time.sleep(1)
     pass
 
-def flash():
-    bridge.lights[1].state(bri=10)
-    time.sleep(0.5)
-    bridge.lights[1].state(bri=255)
-    time.sleep(0.5)
-    bridge.lights[1].state(bri=10)
-    time.sleep(0.5)
-    bridge.lights[1].state(bri=255)
-    time.sleep(0.5)
-    bridge.lights[1].state(bri=10)
-    time.sleep(0.5)
-    bridge.lights[1].state(bri=255)
-    time.sleep(1)
+def flash(light):
+    print('Flashing ...')
+    for i in range(3):
+        light.state(bri=0, xy = rgbToXY([245, 158, 66]))
+        time.sleep(1)
+        light.state(bri=255)
+        time.sleep(1)
+    pass
+
+def setOgValues(light):
+    preRequestValues['bri'] = light()['state']['bri']
+    preRequestValues['hue'] = light()['state']['hue']
+    preRequestValues['xy'] = light()['state']['xy']
+    pass
+
+def resetLight(light):
+    light.state(bri=preRequestValues['bri'], hue=preRequestValues['hue'], xy = preRequestValues['xy'])
     pass
 
 try:
     bridge = Bridge('192.168.1.145', 'LLHKC9B4pBSGfoAtOkRLeL3qZ6wvSl9Pns7doK46')
     lights = bridge.lights()
 
-    # ogBri = 
-    # ogHue = 
-    # ogXY = 
-    
-    print("{} lights:\n".format(len(lights)))
-    print(yaml.safe_dump(bridge.lights['1'](), indent=4))
+    time.sleep(0.5)
+    currentLight = bridge.lights[4]
 
+    setOgValues(currentLight)
+
+    flash(currentLight)
+    switchRGB(currentLight)
+    
     time.sleep(1)
-
-    # flash()
-    switchRGB()
-    
-    bridge.lights[1].state(bri=225, hue=7782, xy = [0.4963, 0.4152])
+    resetLight(currentLight)
 except Exception as e: 
     print(e)
