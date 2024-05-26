@@ -3,8 +3,18 @@ import time
 import yaml
 import math
 
+colors = {
+    'red'   : [255, 0, 0],
+    'green' : [0, 255, 0],
+    'blue'  : [0, 0, 255],
+}
 
-def rgb(red, green, blue):
+
+def rgbToXY(values):
+    red = values[0]
+    green = values[1]
+    blue = values[2]
+
     if (red > 0.04045):
         red = math.pow((red + 0.055) / (1.0 + 0.055), 2.4)
     else:
@@ -28,39 +38,43 @@ def rgb(red, green, blue):
     return [x, y]
 
 def switchRGB():
-    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(255, 0, 0))
+    bridge.lights[1].state(xy = rgbToXY(colors['red']))
     time.sleep(1)
-    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(0, 255, 0))
+    bridge.lights[1].state(xy = rgbToXY(colors['green']))
     time.sleep(1)
-    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(0, 0, 255))
+    bridge.lights[1].state(xy = rgbToXY(colors['blue']))
     time.sleep(1)
     pass
 
 def flash():
-    bridge.lights[1].state(bri=10, hue=9000, xy = [0.4963, 0.4152])
+    bridge.lights[1].state(bri=10)
     time.sleep(0.5)
-    bridge.lights[1].state(bri=255, hue=9000, xy = [0.4963, 0.4152])
+    bridge.lights[1].state(bri=255)
     time.sleep(0.5)
-    bridge.lights[1].state(bri=10, hue=9000, xy = [0.4963, 0.4152])
+    bridge.lights[1].state(bri=10)
     time.sleep(0.5)
-    bridge.lights[1].state(bri=255, hue=9000, xy = [0.4963, 0.4152])
+    bridge.lights[1].state(bri=255)
     time.sleep(0.5)
-    bridge.lights[1].state(bri=10, hue=9000, xy = [0.4963, 0.4152])
+    bridge.lights[1].state(bri=10)
     time.sleep(0.5)
-    bridge.lights[1].state(bri=255, hue=9000, xy = [0.4963, 0.4152])
+    bridge.lights[1].state(bri=255)
     time.sleep(1)
     pass
 
 try:
     bridge = Bridge('192.168.1.145', 'LLHKC9B4pBSGfoAtOkRLeL3qZ6wvSl9Pns7doK46')
     lights = bridge.lights()
+
+    # ogBri = 
+    # ogHue = 
+    # ogXY = 
     
     print("{} lights:\n".format(len(lights)))
     print(yaml.safe_dump(bridge.lights['1'](), indent=4))
 
     time.sleep(1)
 
-    flash()
+    # flash()
     switchRGB()
     
     bridge.lights[1].state(bri=225, hue=7782, xy = [0.4963, 0.4152])
