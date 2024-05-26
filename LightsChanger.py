@@ -27,7 +27,29 @@ def rgb(red, green, blue):
     y = Y / (X + Y + Z)
     return [x, y]
 
+def switchRGB():
+    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(255, 0, 0))
+    time.sleep(1)
+    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(0, 255, 0))
+    time.sleep(1)
+    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(0, 0, 255))
+    time.sleep(1)
+    pass
 
+def flash():
+    bridge.lights[1].state(bri=10, hue=9000, xy = [0.4963, 0.4152])
+    time.sleep(0.5)
+    bridge.lights[1].state(bri=255, hue=9000, xy = [0.4963, 0.4152])
+    time.sleep(0.5)
+    bridge.lights[1].state(bri=10, hue=9000, xy = [0.4963, 0.4152])
+    time.sleep(0.5)
+    bridge.lights[1].state(bri=255, hue=9000, xy = [0.4963, 0.4152])
+    time.sleep(0.5)
+    bridge.lights[1].state(bri=10, hue=9000, xy = [0.4963, 0.4152])
+    time.sleep(0.5)
+    bridge.lights[1].state(bri=255, hue=9000, xy = [0.4963, 0.4152])
+    time.sleep(1)
+    pass
 
 try:
     bridge = Bridge('192.168.1.145', 'LLHKC9B4pBSGfoAtOkRLeL3qZ6wvSl9Pns7doK46')
@@ -36,13 +58,11 @@ try:
     print("{} lights:\n".format(len(lights)))
     print(yaml.safe_dump(bridge.lights['1'](), indent=4))
 
+    time.sleep(1)
 
-    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(255, 0, 0))
-    time.sleep(1)
-    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(0, 255, 0))
-    time.sleep(1)
-    bridge.lights[1].state(bri=180, hue=9000, xy = rgb(0, 0, 255))
-    time.sleep(1)
+    flash()
+    switchRGB()
+    
     bridge.lights[1].state(bri=225, hue=7782, xy = [0.4963, 0.4152])
 except Exception as e: 
     print(e)
