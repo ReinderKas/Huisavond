@@ -14,10 +14,6 @@ def storeOgValues(light):
     preRequestValues['xy'] = light()['state']['xy']
     return light
 
-def resetLight(light):
-    light.state(bri=preRequestValues['bri'], hue=preRequestValues['hue'], xy = preRequestValues['xy'])
-    pass
-
 try:
     bridge = Bridge('192.168.1.145', 'LLHKC9B4pBSGfoAtOkRLeL3qZ6wvSl9Pns7doK46')
 
@@ -35,4 +31,4 @@ try:
 except Exception as e: 
     print(e)
 finally:
-    resetLight(currentLight)
+    currentLight.state(bri=preRequestValues['bri'], hue=preRequestValues['hue'], xy = preRequestValues['xy'])
