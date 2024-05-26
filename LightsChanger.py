@@ -3,6 +3,7 @@ import time
 import yaml
 import math
 
+sleepTime = 0.5
 colors = {
     'red'   : [255, 0, 0],
     'green' : [0, 255, 0],
@@ -14,6 +15,7 @@ preRequestValues = {
     'hue'  : 0,
     'xy'  : [0, 0],
 }
+
 
 def rgbToXY(values):
     red = values[0]
@@ -46,23 +48,23 @@ def switchRGB(light):
     print('Switching RGB ...')
     for color in colors.values():
         light.state(xy = rgbToXY(color))
-        time.sleep(1)
+        time.sleep(sleepTime)
     pass
 
 def flash(light):
     print('Flashing ...')
     for i in range(3):
         light.state(bri=0, xy = rgbToXY([245, 158, 66]))
-        time.sleep(1)
+        time.sleep(sleepTime)
         light.state(bri=255)
-        time.sleep(1)
+        time.sleep(sleepTime)
     pass
 
-def setOgValues(light):
+def storeOgValues(light):
     preRequestValues['bri'] = light()['state']['bri']
     preRequestValues['hue'] = light()['state']['hue']
     preRequestValues['xy'] = light()['state']['xy']
-    pass
+    return light
 
 def resetLight(light):
     light.state(bri=preRequestValues['bri'], hue=preRequestValues['hue'], xy = preRequestValues['xy'])
@@ -70,17 +72,19 @@ def resetLight(light):
 
 try:
     bridge = Bridge('192.168.1.145', 'LLHKC9B4pBSGfoAtOkRLeL3qZ6wvSl9Pns7doK46')
-    lights = bridge.lights()
 
-    time.sleep(0.5)
-    currentLight = bridge.lights[4]
+    
+    # Connected Lights:
+    #   1 : Main light
+    #   3 : Wasbak
+    #   4 : Led bij bed
 
-    setOgValues(currentLight)
+    currentLight = storeOgValues(bridge.lights[3])
 
     flash(currentLight)
     switchRGB(currentLight)
-    
-    time.sleep(1)
-    resetLight(currentLight)
+
 except Exception as e: 
     print(e)
+finally:
+    resetLight(currentLight)
