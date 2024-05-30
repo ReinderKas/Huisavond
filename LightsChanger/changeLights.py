@@ -22,11 +22,11 @@ try:
     #   3 : Wasbak
     #   4 : Led bij bed
 
-    currentLight = storeOgValues(bridge.lights[3])
+    currentLight = storeOgValues(bridge.lights[4])
     delay = 0.5
 
     lightMethods.flash(currentLight, delay)
-    lightMethods.switchRGB(currentLight, delay)
+    #lightMethods.switchRGB(currentLight, delay)
 
 except Exception as e: 
     print(e)
