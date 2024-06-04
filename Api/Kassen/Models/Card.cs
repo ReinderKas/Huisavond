@@ -5,5 +5,6 @@ namespace Kassen.Models
         public string Suit { get; set; }
         public string Rank { get; set; }
         public bool IsDrawn { get; set; }
+        public int Order { get; set; }
     }
 }

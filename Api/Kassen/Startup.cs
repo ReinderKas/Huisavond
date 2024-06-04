@@ -32,10 +32,10 @@ public class Startup
         {
             app.UseHttpsRedirection();
         }
-        app.UseHttpsRedirection();
+        app.UseRouting();
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapControllers() .RequireAuthorization();
+            endpoints.MapControllers();
         });
     }
 }
