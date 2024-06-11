@@ -22,6 +22,7 @@ During a game the screen can be cleared, but must come back after the game. <br>
    - <b> Could be increased/decreased by a card! </b>
  - Card that allows you to divide 4 increment points.
  - Card that allows you to divide 2 decrement points.
+ - drinking buddy
  - Allowed to talk when light is green vs not when red.
    - Time constraint?  minutes?
  - Pressure game with the song
