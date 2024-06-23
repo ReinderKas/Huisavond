@@ -1,11 +1,11 @@
+using Kassen.Games;
 using Kassen.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kassen.Database;
 public class KassenContext : DbContext
 {
-        public DbSet<Card> Cards { get; set; }
-        public DbSet<CardGame> Games { get; set; }
+        public DbSet<Game> Games { get; set; }
         public DbSet<Player> Players { get; set; }
         
 
@@ -13,7 +13,17 @@ public class KassenContext : DbContext
     public KassenContext(DbContextOptions<KassenContext> options)
         : base(options)
     { }
+
     
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Game>()
+            .HasDiscriminator<string>("GameName")
+            .HasValue<Jackpot>("JackPot");
+    }
+
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddCors(options =>

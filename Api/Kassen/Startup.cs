@@ -19,6 +19,16 @@ public class Startup
         services.AddDbContext<KassenContext>(options =>
             options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
+        // Configure CORS
+        services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            });
+        });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -32,7 +42,12 @@ public class Startup
         {
             app.UseHttpsRedirection();
         }
+
         app.UseRouting();
+
+        // Enable CORS
+        app.UseCors();
+
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapControllers();

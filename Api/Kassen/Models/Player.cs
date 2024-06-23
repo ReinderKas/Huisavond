@@ -1,18 +1,21 @@
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Kassen.Models;
-public class Player : BaseEntity
+public class Player
 {
-    private string Name { get; set; }
-    private int Difficulty { get; set; }
-    private int TotalDrinks { get; set;}
+    [Key]
+    public string Name { get; set; }
+    public int Difficulty { get; set; }
+    public int TotalDrinks { get; set;}
 
     // Necessary for EF Core
     public Player() { }
 
-    public Player(string name)
+    public Player(string name, int difficulty)
     {
         Name = name;
-        Difficulty = 6;
+        Difficulty = difficulty;
         TotalDrinks = 0;
     }
 

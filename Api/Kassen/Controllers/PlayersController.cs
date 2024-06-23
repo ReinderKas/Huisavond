@@ -21,21 +21,26 @@ namespace Api.Kassen.Controllers
             return Ok(_context.Players);
         }
 
-        [HttpPost("/create/{name}")]
-        public ActionResult<Player> CreatePlayer(string name)
+        [HttpPost]
+        public ActionResult<Player> CreatePlayer(string name, int difficulty)
         {
-            var newPlayer = new Player(name);
+            Console.WriteLine("Creating Player\n");
+            var newPlayer = new Player(name, difficulty);
 
             _context.Players.Add(newPlayer);
             _context.SaveChangesAsync();
+            
+            Console.WriteLine("Created Player", newPlayer.ToString());
+            Console.WriteLine($"Created Player: {newPlayer.Name}  -  {newPlayer.Difficulty}");
+            Console.WriteLine("\n\n\n");
 
-            return CreatedAtAction(nameof(CreatePlayer), new { id = newPlayer.Id }, newPlayer);
+            return CreatedAtAction(nameof(CreatePlayer), new { id = newPlayer.Name }, newPlayer);
         }
         
-        [HttpDelete("/{playerId}")]
-        public ActionResult<Player> DeletePlayer(Guid id)
+        [HttpDelete("/{name}")]
+        public ActionResult<Player> DeletePlayer(string name)
         {
-            var player = _context.Players.FirstOrDefault(p => p.Id == id);
+            var player = _context.Players.FirstOrDefault(p => p.Name == name);
             if (player == null)
                 return NotFound("Player not found.");
 

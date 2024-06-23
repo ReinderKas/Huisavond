@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kassen", "Kassen.csproj", "{F992D8BB-085B-4FBA-B597-7188FEA73C80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F992D8BB-085B-4FBA-B597-7188FEA73C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F992D8BB-085B-4FBA-B597-7188FEA73C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F992D8BB-085B-4FBA-B597-7188FEA73C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F992D8BB-085B-4FBA-B597-7188FEA73C80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {12F2C2AC-BCC0-42B6-8FFD-0A8FDCF9505F}
+	EndGlobalSection
+EndGlobal
