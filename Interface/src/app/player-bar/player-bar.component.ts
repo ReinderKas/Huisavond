@@ -18,12 +18,18 @@ export class PlayerBarComponent implements OnInit{
   name: string = '';
   difficulty: number = 0;
 
+  addPlayers: boolean = false;
+
   players: Player[] = [];
   
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.refreshPlayers();
+    this.initData();
+  }
+
+  toggleAddPlayers(){
+    this.addPlayers = !this.addPlayers;
   }
 
   async onCreatePlayer() {
@@ -36,16 +42,17 @@ export class PlayerBarComponent implements OnInit{
     });
     let json = await response.json()
 
-    this.players.push(new Player(json['name'], json['difficulty'], json['totalDrinks']))
+    this.players.push(new Player(json['name'], json['difficulty'], json['totalDrinks'], json['isInRaffle']))
+    this.name = '';
+    this.difficulty = 0;
   }
 
-  async refreshPlayers(){
+  async initData(){
     const response =  await fetch(`https://localhost:5104/players`, {
       method: 'GET',
     });
 
     let playersRespo = await response.json();
-    console.log(playersRespo);
     this.players = playersRespo;
   }
 }

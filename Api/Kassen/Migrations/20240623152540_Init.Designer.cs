@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kassen.Migrations
 {
     [DbContext(typeof(KassenContext))]
-    [Migration("20240623102943_Init")]
+    [Migration("20240623152540_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -20,24 +20,19 @@ namespace Kassen.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
 
-            modelBuilder.Entity("Kassen.Games.Game", b =>
+            modelBuilder.Entity("Kassen.Games.Jackpot", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<Guid>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("GameName")
+                    b.Property<string>("PlayerNames")
                         .IsRequired()
-                        .HasMaxLength(8)
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.ToTable("Games");
-
-                    b.HasDiscriminator<string>("GameName").HasValue("Game");
-
-                    b.UseTphMappingStrategy();
+                    b.ToTable("Jackpot");
                 });
 
             modelBuilder.Entity("Kassen.Models.Player", b =>
@@ -48,36 +43,15 @@ namespace Kassen.Migrations
                     b.Property<int>("Difficulty")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid?>("GameId")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("TotalDrinks")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isInRaffle")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Name");
 
-                    b.HasIndex("GameId");
-
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("Kassen.Games.Jackpot", b =>
-                {
-                    b.HasBaseType("Kassen.Games.Game");
-
-                    b.HasDiscriminator().HasValue("JackPot");
-                });
-
-            modelBuilder.Entity("Kassen.Models.Player", b =>
-                {
-                    b.HasOne("Kassen.Games.Game", null)
-                        .WithMany("Players")
-                        .HasForeignKey("GameId");
-                });
-
-            modelBuilder.Entity("Kassen.Games.Game", b =>
-                {
-                    b.Navigation("Players");
                 });
 #pragma warning restore 612, 618
         }

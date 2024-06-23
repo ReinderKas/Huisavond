@@ -1,0 +1,10 @@
+#playersForm {
+    margin-left: 550px;
+    width: 10vw;
+    padding-top: 50px;
+}
+#playersOverview{
+    margin-left: 150px;
+    width: 50vw;
+    min-height: 20vh;
+}

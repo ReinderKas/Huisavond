@@ -12,15 +12,15 @@ namespace Kassen.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Games",
+                name: "Jackpot",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    GameName = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false)
+                    id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    PlayerNames = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Games", x => x.Id);
+                    table.PrimaryKey("PK_Jackpot", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,32 +30,22 @@ namespace Kassen.Migrations
                     Name = table.Column<string>(type: "TEXT", nullable: false),
                     Difficulty = table.Column<int>(type: "INTEGER", nullable: false),
                     TotalDrinks = table.Column<int>(type: "INTEGER", nullable: false),
-                    GameId = table.Column<Guid>(type: "TEXT", nullable: true)
+                    isInRaffle = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Name);
-                    table.ForeignKey(
-                        name: "FK_Players_Games_GameId",
-                        column: x => x.GameId,
-                        principalTable: "Games",
-                        principalColumn: "Id");
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Players_GameId",
-                table: "Players",
-                column: "GameId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Players");
+                name: "Jackpot");
 
             migrationBuilder.DropTable(
-                name: "Games");
+                name: "Players");
         }
     }
 }

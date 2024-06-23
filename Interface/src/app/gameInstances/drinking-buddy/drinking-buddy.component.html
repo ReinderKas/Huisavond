@@ -1,0 +1,19 @@
+<h1 class="text-center py-3">Drinking Buddies</h1>
+<p class="text-center py-3">
+    Current drinking buddies:
+</p>
+<div class="p-4" id="playersOverview">
+
+</div>
+
+<form class=p-4 id="playersForm" (ngSubmit)="addDrinkingBuddies()">
+    <div class="mb-3">
+        <label for="fromName" class="form-label">From</label>
+        <input type="text" class="form-control" [(ngModel)]="fromName" name="fromName" required>
+    </div>
+    <div class="mb-3">
+        <label for="toName" class="form-label">To</label>
+        <input type="text" class="form-control" [(ngModel)]="toName" name="toName" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Add drinking Buddies</button>
+</form>
