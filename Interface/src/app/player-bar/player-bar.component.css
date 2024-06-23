@@ -1,0 +1,21 @@
+#playersForm {
+    min-width: 200px;
+    max-width:  1000px;
+    /* min-height: 100vh; */
+    padding-top: 50px;
+}
+#playersOverview{
+    min-width: 200px;
+    max-width:  1000px;
+    min-height: 20vh;
+    /* padding-top: 20px; */
+    /* border:  */
+}
+
+#sidebar {
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 100vh;
+    padding-top: 20px;
+    border-left: 1px solid;
+}
