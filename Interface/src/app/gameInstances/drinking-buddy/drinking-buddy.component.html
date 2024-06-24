@@ -2,8 +2,15 @@
 <p class="text-center py-3">
     Current drinking buddies:
 </p>
-<div class="p-4" id="playersOverview">
-
+<div class="p-4" style="margin-left:400px; width:25vw;">
+    <table class="table">
+        <tbody>
+            <tr *ngFor="let buddies of drinkingBuddies">
+            <td style="text-align: center;border-left:5px">{{ buddies.from }}</td>
+            <td style="text-align: center;">{{ buddies.to }}</td> 
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 <form class=p-4 id="playersForm" (ngSubmit)="addDrinkingBuddies()">

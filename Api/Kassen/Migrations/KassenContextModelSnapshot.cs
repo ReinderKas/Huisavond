@@ -42,40 +42,17 @@ namespace Kassen.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FuckedName")
+                    b.Property<string>("From")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("FuckerName")
+                    b.Property<string>("To")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
-                    b.HasIndex("FuckedName");
-
-                    b.HasIndex("FuckerName");
-
                     b.ToTable("DrinkingBuddy");
-                });
-
-            modelBuilder.Entity("Models.DrinkingBuddy", b =>
-                {
-                    b.HasOne("Kassen.Models.Player", "Fucked")
-                        .WithMany()
-                        .HasForeignKey("FuckedName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Kassen.Models.Player", "Fucker")
-                        .WithMany()
-                        .HasForeignKey("FuckerName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Fucked");
-
-                    b.Navigation("Fucker");
                 });
 #pragma warning restore 612, 618
         }

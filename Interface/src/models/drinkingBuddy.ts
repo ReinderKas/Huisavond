@@ -1,9 +1,11 @@
 export class DrinkingBuddy{
+    public id: string;
     public from: string;
     public to: string;
 
-    constructor(_from: string, _to: string) {
-        this.from = _from;
-        this.to = _to;
+    constructor(id: string, from: string, to: string) {
+        this.from = from;
+        this.to = to;
+        this.id = id
     }
 }

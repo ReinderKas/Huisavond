@@ -6,17 +6,21 @@ public class DrinkingBuddy{
     
     [Key]
     public Guid id { get; set; }
-    public Player Fucker { get; set; }
-    public Player Fucked { get; set; }
+    public string From { get; set; }
+    public string To { get; set; }
 
-    public DrinkingBuddy(Player from, Player to)
+    public DrinkingBuddy(string from, string to)
     {
-        Fucker = from;
-        Fucked = to;
+        From = from;
+        To = to;
         id = Guid.NewGuid();
     }
+
     public DrinkingBuddy()
     {
         id = Guid.NewGuid(); // Optionally set the id here if not set externally
     }
+
+    public override string ToString()
+        => $"From: {From} \t To: {To}";
 }

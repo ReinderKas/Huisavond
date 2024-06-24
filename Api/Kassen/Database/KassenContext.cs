@@ -5,7 +5,7 @@ using Models;
 namespace Kassen.Database;
 public class KassenContext : DbContext
 {
-        public DbSet<DrinkingBuddy> DrinkingBuddy { get;}
+        public DbSet<DrinkingBuddy> DrinkingBuddy { get; set;}
         public DbSet<Player> Players { get; set; }
         
 

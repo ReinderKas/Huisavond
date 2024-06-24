@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Kassen.Migrations
 {
     [DbContext(typeof(KassenContext))]
-    [Migration("20240623152540_Init")]
+    [Migration("20240623213726_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -19,21 +19,6 @@ namespace Kassen.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.6");
-
-            modelBuilder.Entity("Kassen.Games.Jackpot", b =>
-                {
-                    b.Property<Guid>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PlayerNames")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Jackpot");
-                });
 
             modelBuilder.Entity("Kassen.Models.Player", b =>
                 {
@@ -52,6 +37,25 @@ namespace Kassen.Migrations
                     b.HasKey("Name");
 
                     b.ToTable("Players");
+                });
+
+            modelBuilder.Entity("Models.DrinkingBuddy", b =>
+                {
+                    b.Property<Guid>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("From")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("To")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.ToTable("DrinkingBuddy");
                 });
 #pragma warning restore 612, 618
         }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Player } from '../../models/player';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DrinkingBuddy } from '../../models/drinkingBuddy';
 
 @Component({
   selector: 'app-player-bar',
@@ -21,6 +22,7 @@ export class PlayerBarComponent implements OnInit{
   addPlayers: boolean = false;
 
   players: Player[] = [];
+  drinkingBuddies: DrinkingBuddy[] = [];
   
   constructor(private router: Router) { }
 
@@ -54,5 +56,11 @@ export class PlayerBarComponent implements OnInit{
 
     let playersRespo = await response.json();
     this.players = playersRespo;
+
+    const response2 =  await fetch(`https://localhost:5104/drinkingBuddy`, {
+      method: 'GET',
+    });
+    let buddies = await response2.json();
+    this.drinkingBuddies = buddies;
   }
 }

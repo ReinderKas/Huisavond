@@ -12,15 +12,16 @@ namespace Kassen.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Jackpot",
+                name: "DrinkingBuddy",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    PlayerNames = table.Column<string>(type: "TEXT", nullable: false)
+                    From = table.Column<string>(type: "TEXT", nullable: false),
+                    To = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Jackpot", x => x.id);
+                    table.PrimaryKey("PK_DrinkingBuddy", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -42,7 +43,7 @@ namespace Kassen.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Jackpot");
+                name: "DrinkingBuddy");
 
             migrationBuilder.DropTable(
                 name: "Players");

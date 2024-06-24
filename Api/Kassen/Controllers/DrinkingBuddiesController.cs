@@ -18,8 +18,12 @@ namespace Kassen.Controllers
         }
 
         [HttpGet]   
-        public async Task<ActionResult<IEnumerable<DrinkingBuddy>>> GetPlayers()
+        public async Task<ActionResult<List<DrinkingBuddy>>> GetDrinkingBuddies()
         {
+            foreach (var buddy in _context.DrinkingBuddy)
+            {
+                Console.WriteLine(buddy);
+            }
             return Ok(_context.DrinkingBuddy);
         }
 
@@ -28,10 +32,16 @@ namespace Kassen.Controllers
         {
             var fromPlayer = await _context.Players.FirstAsync(p => p.Name == from);
             var toPlayer = await _context.Players.FirstAsync(p => p.Name == to);
+
+            if (fromPlayer == null || toPlayer == null)
+                return NotFound("Could not find the players.");
             
-            var drinkBuddy = new DrinkingBuddy(fromPlayer, toPlayer);
+            var drinkBuddy = new DrinkingBuddy(fromPlayer.Name, toPlayer.Name);
+
+            Console.WriteLine("New Drinking Buddy");
+            Console.WriteLine(drinkBuddy.ToString());
             
-            await _context.AddAsync(drinkBuddy);
+            await _context.DrinkingBuddy.AddAsync(drinkBuddy);
             await _context.SaveChangesAsync();
             
             return Ok();

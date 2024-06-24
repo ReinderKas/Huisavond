@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './drinking-buddy.component.css'
 })
 export class DrinkingBuddyComponent {
-  drinkingBudies: DrinkingBuddy[] = []
+  drinkingBuddies: DrinkingBuddy[] = []
   fromName: string = '';
   toName: string = '';
   
@@ -39,8 +39,7 @@ export class DrinkingBuddyComponent {
     const response =  await fetch(`https://localhost:5104/drinkingBuddy`, {
       method: 'GET',
     });
-    console.log(response)
-    let playersRespo = await response.json();
-    this.drinkingBudies = playersRespo;
+    let buddies = await response.json();
+    this.drinkingBuddies = buddies;
   }
 }
