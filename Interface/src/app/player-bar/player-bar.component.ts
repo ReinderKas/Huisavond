@@ -43,7 +43,6 @@ export class PlayerBarComponent implements OnInit{
       }
     });
     let json = await response.json()
-
     this.players.push(new Player(json['name'], json['difficulty'], json['totalDrinks'], json['isInRaffle']))
     this.name = '';
     this.difficulty = 0;
@@ -62,5 +61,14 @@ export class PlayerBarComponent implements OnInit{
     });
     let buddies = await response2.json();
     this.drinkingBuddies = buddies;
+  }
+
+  async selectPlayer(player: string){
+    console.log(player)
+    let response = await fetch(`https://localhost:5104/drinkingBuddy?name=${player }`, {method: 'PUT',})
+    this.initData();
+
+    let playersRespo = await response.text();
+    alert(playersRespo);
   }
 }

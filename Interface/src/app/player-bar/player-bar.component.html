@@ -1,15 +1,4 @@
 <div id="sidebar" class="bg-dark d-flex flex-column">
-    <div *ngIf="drinkingBuddies.length > 0" class="text=center py-3">
-        <h1 class="text-center py-3">Drinking buddies</h1> 
-        <table class="table">
-        <tbody>
-            <tr *ngFor="let buddies of drinkingBuddies">
-            <td style="text-align: center;">{{ buddies.from }}</td>
-            <td style="text-align: center;">{{ buddies.to }}</td> 
-            </tr>
-        </tbody>
-        </table>
-    </div>
     <div class="text-center py-3">
         <h1 class="text-center py-3">Players</h1>
     </div>
@@ -20,6 +9,7 @@
             <th>Name</th>
             <th style="text-align: center;">Difficulty</th>
             <th style="text-align: center;">Total Drinks</th>
+            <th style="text-align: center;">Bottoms up!</th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +17,9 @@
             <td>{{ player.name }}</td>
             <td style="text-align: center;">{{ player.difficulty }}</td>
             <td style="text-align: center;">{{ player.totalDrinks }}</td> 
+            <td style="text-align: center;">
+                <button class="btn btn-primary" style="padding-top:0; padding-bottom:0; height:25px;" (click)="selectPlayer(player.name)">Drink!</button>
+            </td>
             </tr>
         </tbody>
         </table>

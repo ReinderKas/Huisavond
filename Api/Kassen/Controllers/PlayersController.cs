@@ -18,7 +18,7 @@ namespace Api.Kassen.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Player>> GetPlayers()
         {
-            return Ok(_context.Players);
+            return Ok(_context.Players.OrderByDescending(p => p.TotalDrinks));
         }
 
         [HttpPost]

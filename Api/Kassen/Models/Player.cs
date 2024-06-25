@@ -1,5 +1,6 @@
 
 using System.ComponentModel.DataAnnotations;
+using SQLitePCL;
 
 namespace Kassen.Models;
 public class Player
@@ -27,6 +28,23 @@ public class Player
 
     public void ChangeDifficulty(int difference)
         => Difficulty = BetweenLimits(Difficulty + difference);
+
+    public int Drink(string game)
+    {
+        var random = new Random();
+        var mininum = Difficulty;
+        var maximum = Difficulty + 6;
+        var drinks = game switch
+        {
+            "Categories" => random.Next(mininum, maximum) / 2,
+            "RandomAmount" => Math.Min(12, Math.Max(1, random.Next(mininum-3, maximum+3))),
+            "DrinkingBuddy" => Convert.ToInt32(random.Next(mininum, maximum) * 2/3),
+            _ => 12
+        };
+
+        TotalDrinks += drinks;
+        return drinks;
+    }
 
     public override string ToString()
         => $"Name: {Name}\n" +
