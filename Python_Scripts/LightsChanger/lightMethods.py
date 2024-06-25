@@ -1,10 +1,14 @@
 import math
 import time
+import random
 
 colors = {
-    'red'   : [255, 0, 0],
-    'green' : [0, 255, 0],
-    'blue'  : [0, 0, 255],
+    'red'   : [255, 0, 0],          # Not allowed to say person's name.
+    'green' : [0, 255, 0],          # Must drink with left hand.
+    'yellow': [255, 255, 0],        # Must drink with right hand.
+    'purple': [255, 0, 255],        # Every sentence must be a question. 
+    'cyan'  : [0, 255, 255],        # 
+    'blue'  : [0, 0, 255],          # Have to guess the next color. If correct --> give 3 sips.
 }
 
 def rgbToXY(values):
@@ -34,13 +38,6 @@ def rgbToXY(values):
     y = Y / (X + Y + Z)
     return [x, y]
 
-def switchRGB(light, delay):
-    print('Switching RGB ...')
-    for color in colors.values():
-        light.state(xy = rgbToXY(color))
-        time.sleep(delay)
-    pass
-
 def flash(light, delay):
     print('Flashing ...')
     for i in range(3):
@@ -49,3 +46,7 @@ def flash(light, delay):
         light.state(bri=255)
         time.sleep(delay)
     pass
+
+def randomLight(light):
+    color_name, color_value = random.choice(list(colors.items()))
+    light.state(xy = rgbToXY(color_value))

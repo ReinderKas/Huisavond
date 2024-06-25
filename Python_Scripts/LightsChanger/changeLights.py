@@ -1,6 +1,6 @@
 from qhue import Bridge
 import lightMethods
-import yaml
+import time
 
 preRequestValues = {
     'bri'  : 0,
@@ -26,9 +26,16 @@ try:
     delay = 0.5
 
     lightMethods.flash(currentLight, delay)
-    #lightMethods.switchRGB(currentLight, delay)
+
+    delay = 1 * 60 * 15 # 15 minutes
+    
+    
+    while True:
+        lightMethods.randomLight(currentLight, delay)
+        time.sleep(delay)
 
 except Exception as e: 
     print(e)
 finally:
     currentLight.state(bri=preRequestValues['bri'], hue=preRequestValues['hue'], xy = preRequestValues['xy'])
+
