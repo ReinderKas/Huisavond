@@ -38,7 +38,7 @@ public class Player
         {
             "Categories" => random.Next(mininum, maximum) / 2,
             "RandomAmount" => Math.Min(12, Math.Max(1, random.Next(mininum-3, maximum+3))),
-            "DrinkingBuddy" => Convert.ToInt32(random.Next(mininum, maximum) * 2/3),
+            "DrinkingBuddy" => Convert.ToInt32(random.Next(mininum, maximum)),
             _ => 12
         };
 
