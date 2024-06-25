@@ -66,7 +66,6 @@ namespace Kassen.Controllers
             if (skip != "" && skipped != null)
             {
                 players.Remove(skipped);
-                skipped.TotalDrinks += 5;
             }
 
             var resultString = "";

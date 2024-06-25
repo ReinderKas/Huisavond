@@ -38,7 +38,9 @@ export class OnevoneComponent implements OnInit {
       this.initData();
 
       let playersRespo = await response2.text();
-      alert(playersRespo);
+      if (playersRespo.length > 0){
+        alert(playersRespo);
+      }
     } 
   }
 

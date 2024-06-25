@@ -69,6 +69,8 @@ export class PlayerBarComponent implements OnInit{
     this.initData();
 
     let playersRespo = await response.text();
-    alert(playersRespo);
+    if (playersRespo.length > 0){
+      alert(playersRespo);
+    }
   }
 }

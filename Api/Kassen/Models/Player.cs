@@ -43,6 +43,7 @@ public class Player
         };
 
         TotalDrinks += drinks;
+        Console.WriteLine($"{Name} is drinking {drinks} drinks.\n\n");
         return drinks;
     }
 
