@@ -1,0 +1,27 @@
+<div class="text-center py-3">
+    <h1 class="text-center py-3">Who drew the card?</h1>
+    <p  class="text-center py-3">If now Clockwise: -2 difficulty</p>
+    <p  class="text-center py-3">If now Counter-Clockwise: +2 difficulty</p>
+</div>
+<div class="p-4" id="playersOverview">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th style="text-align: center;">Difficulty</th>
+                <th style="text-align: center;">Total Drinks</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{ player.name }}</td>
+                <td style="text-align: center;">{{ player.difficulty }}</td>
+                <td style="text-align: center;">{{ player.totalDrinks }}</td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player)">Select</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
