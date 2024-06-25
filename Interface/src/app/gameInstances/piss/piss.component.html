@@ -1,1 +1,26 @@
-<p>piss works!</p>
+<h1 class="text-center py-3"><u>Piss Card</u></h1>
+<div class="text-center py-3">
+    <p class="text-center py-3">The person with the piss card is allowed to piss for the cost of +1 Difficulty.</p>
+</div>
+<div class="p-4" style="width: 40vw; margin-left: 250px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th style="text-align: center;">Difficulty</th>
+                <th style="text-align: center;">Total Drinks</th>
+                <th style="text-align: center;">Piss</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{ player.name }}</td>
+                <td style="text-align: center;">{{ player.difficulty }}</td>
+                <td style="text-align: center;">{{ player.totalDrinks }}</td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player)">Piss</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

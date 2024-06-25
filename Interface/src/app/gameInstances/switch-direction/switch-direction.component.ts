@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Player } from '../../../models/player';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,8 +13,13 @@ import { CommonModule } from '@angular/common';
   templateUrl: './switch-direction.component.html',
   styleUrl: './switch-direction.component.css'
 })
-export class SwitchDirectionComponent {
+export class SwitchDirectionComponent implements OnInit{
   players: Player[] = [];
+
+  
+  ngOnInit(): void {
+    this.initData();
+  }
 
   async initData(){
     const response =  await fetch(`https://localhost:5104/players`, {
@@ -23,9 +28,11 @@ export class SwitchDirectionComponent {
 
     let playersRespo = await response.json();
     this.players = playersRespo;
+    console.log(this.players)
   }
 
-  async selectPlayer(player: Player){
-    await fetch(`https://localhost:5104/switchdirection/${player.name}`, {method: 'POST',})
+  async selectPlayer(player: Player, clockwise: boolean){
+    await fetch(`https://localhost:5104/switchDirection?name=${player.name}&clockwise=${clockwise}`, {method: 'POST',})
+    this.initData();
   }
 }

@@ -1,1 +1,31 @@
-<p>chug works!</p>
+<h1 class="text-center py-3"><u>Chug!</u></h1>
+<div class="text-center py-3">
+    <p class="text-center py-3">Grab a beer and Chug before the timer runs out</p>
+    <p class="text-center py-3">If successfull: -2, if fail: +1</p>
+</div>
+<div class="p-4" style="width: 40vw; margin-left: 250px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th style="text-align: center;">Difficulty</th>
+                <th style="text-align: center;">Total Drinks</th>
+                <th style="text-align: center;">Success</th>
+                <th style="text-align: center;">Fail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{ player.name }}</td>
+                <td style="text-align: center;">{{ player.difficulty }}</td>
+                <td style="text-align: center;">{{ player.totalDrinks }}</td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, true)">Success</button>
+                </td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, false)">Fail</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

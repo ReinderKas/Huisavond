@@ -1,1 +1,33 @@
-<p>onevone works!</p>
+<h1 class="text-center py-3"><u>One vs One</u></h1>
+<div class="text-center py-3">
+    <p class="text-center py-3">Play any 1 v 1 of your likings (Max 10 minutes).</p>
+    <p class="text-center py-3">Winner: -2 Difficulty, Loser +2 Difficulty (+drinking)</p>
+</div>
+    
+<button (click)="startTimer()" class="btn btn-primary" style="margin-left:550px; margin-bottom:50px">Start!</button>
+<div class="p-4" style="width: 40vw; margin-left: 250px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th style="text-align: center;">Difficulty</th>
+                <th style="text-align: center;">Total Drinks</th>
+                <th style="text-align: center;">Winner</th>
+                <th style="text-align: center;">Loser</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{ player.name }}</td>
+                <td style="text-align: center;">{{ player.difficulty }}</td>
+                <td style="text-align: center;">{{ player.totalDrinks }}</td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, true)">Winner</button>
+                </td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, false)">Loser</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -16,8 +16,9 @@ import { FormsModule } from '@angular/forms';
 })
 export class JackpotComponent implements OnInit{
   players: Player[] = [];
-
-  playerName: string = ''
+  playerName: string = '';
+  
+  winner: Player | null = null;
   
   constructor(private router: Router) { }
 
@@ -38,5 +39,9 @@ export class JackpotComponent implements OnInit{
     });
     let playersRespo = await response.json();
     this.players = playersRespo;
+  }
+
+  drawWinner(){
+    this.winner = this.players[Math.floor(Math.random() * this.players.length)];
   }
 }

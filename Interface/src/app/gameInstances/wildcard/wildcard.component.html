@@ -1,1 +1,33 @@
-<p>wildcard works!</p>
+<h1 class="text-center py-3">Wildcard!</h1>
+
+<p class="text-center py-3"><u><strong>Heads:</strong></u> dish out 4 decrement points. (not yourself!) </p>
+<p class="text-center py-3"><u><strong>Tails:</strong></u> dish out 6 increment points.</p>
+
+<button (click)="headsOrTails()" class="btn btn-primary" style="margin-left:520px; margin-bottom:50px">Heads or Tails!</button>
+
+<div class="p-4" style="width: 40vw; margin-left: 250px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th style="text-align: center;">Difficulty</th>
+                <th style="text-align: center;">Total Drinks</th>
+                <th style="text-align: center;">Increase</th>
+                <th style="text-align: center;">Decrease</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{ player.name }}</td>
+                <td style="text-align: center;">{{ player.difficulty }}</td>
+                <td style="text-align: center;">{{ player.totalDrinks }}</td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, true)">Increase</button>
+                </td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, false)">Decrease</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

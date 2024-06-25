@@ -7,7 +7,13 @@
         <tbody>
             <tr *ngFor="let buddies of drinkingBuddies">
             <td style="text-align: center;border-left:5px">{{ buddies.from }}</td>
+            <td style="text-align: center;">
+                <button class="btn btn-primary" style="padding-top:0; padding-bottom:0; height:25px;" (click)="selectPlayer(buddies.from)">Drink!</button>
+            </td>
             <td style="text-align: center;">{{ buddies.to }}</td> 
+            <td style="text-align: center;">
+                <button class="btn btn-primary" style="padding-top:0; padding-bottom:0; height:25px;" (click)="selectPlayer(buddies.to)">Drink!</button>
+            </td>
             </tr>
         </tbody>
     </table>

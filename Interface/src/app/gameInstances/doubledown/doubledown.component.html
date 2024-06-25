@@ -1,1 +1,31 @@
-<p>doubledown works!</p>
+<h1 class="text-center py-3"><u>Double Down</u></h1>
+<div class="text-center py-3">
+    <p class="text-center py-3">Take a shot to remove half your difficulty! (Rounding down)</p>
+    <p class="text-center py-3">If you refuse: +2 Difficulty</p>
+</div>
+<div class="p-4" style="width: 40vw; margin-left: 250px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th style="text-align: center;">Difficulty</th>
+                <th style="text-align: center;">Total Drinks</th>
+                <th style="text-align: center;">Shot</th>
+                <th style="text-align: center;">Refuse</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let player of players">
+                <td>{{ player.name }}</td>
+                <td style="text-align: center;">{{ player.difficulty }}</td>
+                <td style="text-align: center;">{{ player.totalDrinks }}</td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, true)">Shot</button>
+                </td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, false)">Refuse</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

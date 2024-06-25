@@ -1,1 +1,35 @@
-<p>categories works!</p>
+<h1 class="text-center py-3"><u>Categories</u></h1>
+<div *ngIf="winner" style="margin-top: 150px;" class="text-center py-3">
+    <h1>
+        <u><strong>{{ winner.name }}</strong></u> lost Categories! <br>
+        Drink <u><strong>{{ drinks }}</strong></u>! <br>
+    </h1>
+</div>
+
+<div *ngIf="!winner">
+    <div class="text-center py-3">
+        <h1 class="text-center py-3">Who lost the game?</h1>
+    </div>
+    <div class="p-4" style="width: 40vw; margin-left: 250px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th style="text-align: center;">Difficulty</th>
+                    <th style="text-align: center;">Total Drinks</th>
+                    <th style="text-align: center;">Loser</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let player of players">
+                    <td>{{ player.name }}</td>
+                    <td style="text-align: center;">{{ player.difficulty }}</td>
+                    <td style="text-align: center;">{{ player.totalDrinks }}</td>
+                    <td style="text-align: center;">
+                        <button class="btn btn-primary" (click)="selectPlayer(player)">Loser</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

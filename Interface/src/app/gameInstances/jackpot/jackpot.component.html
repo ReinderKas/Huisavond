@@ -1,30 +1,44 @@
-<h1 class="text-center py-3">Jackpot</h1>
-<p class="text-center py-3">
-    Current players in the raffle:
-</p>
-<div class="p-4" id="playersOverview">
-    <table class="table">
-        <thead>
-            <tr>
-            <th>Player</th>
-            <th style="text-align: center;">Difficulty</th>
-            <th style="text-align: center;">Total Drinks</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let player of players">
-            <td>{{ player.name }}</td>
-            <td style="text-align: center;">{{ player.difficulty }}</td>
-            <td style="text-align: center;">{{ player.totalDrinks }}</td> 
-            </tr>
-        </tbody>
-    </table>
+<h1 class="text-center py-3">Goblet of Fire</h1>
+
+<div *ngIf="winner">
+    <h1 class="text-center py-3"><u><strong>{{ winner.name }}</strong></u> <br> has won the right to drink!</h1>
 </div>
 
-<form class=p-4 id="playersForm" (ngSubmit)="addToRaffle()">
-    <div class="mb-3">
-        <label for="playerName" class="form-label">Name</label>
-        <input type="text" class="form-control" [(ngModel)]="playerName" name="playerName" required>
+<div *ngIf="winner == null">
+    <p class="text-center py-3">
+        The player who draws the card will be added to the goblet. <br>
+        Also, add a drink to the glass.
+    </p>
+    
+    
+    <p class="text-center py-3">
+        Current players in the raffle:
+    </p>
+    <div class="p-4" id="playersOverview">
+        <button *ngIf="players.length >= 4" (click)="drawWinner()" class="btn btn-primary" style="margin-left:350px; margin-bottom:50px">Draw winner!</button>
+        <table class="table">
+            <thead>
+                <tr>
+                <th>Player</th>
+                <th style="text-align: center;">Difficulty</th>
+                <th style="text-align: center;">Total Drinks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let player of players">
+                <td>{{ player.name }}</td>
+                <td style="text-align: center;">{{ player.difficulty }}</td>
+                <td style="text-align: center;">{{ player.totalDrinks }}</td> 
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <button type="submit" class="btn btn-primary w-100">Add to raffle</button>
-</form>
+    
+    <form *ngIf="players.length < 4" class=p-4 id="playersForm" (ngSubmit)="addToRaffle()">
+        <div class="mb-3">
+            <label for="playerName" class="form-label">Name</label>
+            <input type="text" class="form-control" [(ngModel)]="playerName" name="playerName" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Add to raffle</button>
+    </form>
+</div>

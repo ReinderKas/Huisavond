@@ -1,16 +1,16 @@
 <div class="text-center py-3">
     <h1 class="text-center py-3">Who drew the card?</h1>
-    <p  class="text-center py-3">If now Clockwise: -2 difficulty</p>
-    <p  class="text-center py-3">If now Counter-Clockwise: +2 difficulty</p>
+    <p  class="text-center py-3">If now <u><strong>Clockwise</strong></u>: -2 difficulty <br>If now <u><strong>Counter-Clockwise</strong></u>: +2 difficulty</p>
 </div>
-<div class="p-4" id="playersOverview">
+<div class="p-4" style="width: 40vw; margin-left: 250px;">
     <table class="table">
         <thead>
             <tr>
                 <th>Name</th>
                 <th style="text-align: center;">Difficulty</th>
                 <th style="text-align: center;">Total Drinks</th>
-                <th style="text-align: center;">Actions</th>
+                <th style="text-align: center;">Clockwise</th>
+                <th style="text-align: center;">Counter-Clockwise</th>
             </tr>
         </thead>
         <tbody>
@@ -19,7 +19,10 @@
                 <td style="text-align: center;">{{ player.difficulty }}</td>
                 <td style="text-align: center;">{{ player.totalDrinks }}</td>
                 <td style="text-align: center;">
-                    <button class="btn btn-primary" (click)="selectPlayer(player)">Select</button>
+                    <button class="btn btn-primary" (click)="selectPlayer(player, true)">Select</button>
+                </td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary" (click)="selectPlayer(player, false)">Select</button>
                 </td>
             </tr>
         </tbody>

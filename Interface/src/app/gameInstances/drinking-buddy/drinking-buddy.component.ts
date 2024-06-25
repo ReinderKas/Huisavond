@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DrinkingBuddy } from '../../../models/drinkingBuddy';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Player } from '../../../models/player';
 
 @Component({
   selector: 'app-drinking-buddy',
@@ -14,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './drinking-buddy.component.html',
   styleUrl: './drinking-buddy.component.css'
 })
-export class DrinkingBuddyComponent {
+export class DrinkingBuddyComponent implements OnInit {
   drinkingBuddies: DrinkingBuddy[] = []
   fromName: string = '';
   toName: string = '';
@@ -39,7 +40,15 @@ export class DrinkingBuddyComponent {
     const response =  await fetch(`https://localhost:5104/drinkingBuddy`, {
       method: 'GET',
     });
-    let buddies = await response.json();
-    this.drinkingBuddies = buddies;
+    this.drinkingBuddies = await response.json();
+  }
+
+
+  async selectPlayer(player: string){
+    let response = await fetch(`https://localhost:5104/drinkingBuddy?name=${player }`, {method: 'PUT',})
+    this.initData();
+
+    let playersRespo = await response.text();
+    alert(playersRespo);
   }
 }
