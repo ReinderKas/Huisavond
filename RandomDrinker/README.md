@@ -7,4 +7,3 @@ A simple program that draws a random name from a pool of names every X minuts.
 Make lights flicker after 5 minutes as a deadline point?
 
 ---
-sdf

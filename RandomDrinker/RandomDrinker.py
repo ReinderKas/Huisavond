@@ -1,9 +1,10 @@
 import time
 import os
 import random
+import changeLights
 from playsound import playsound
 
-fuckers = {
+players = {
     'Sofia'  : 0,
     'NJ'     : 0,
     'Julia'  : 0,
@@ -20,13 +21,14 @@ try:
         if (timer <= 0):
             timer = waitTime   # Reset the timer
 
-            fucktard = random.choice(list(fuckers.keys()))  # Draw the fucktard that has to drink
+            loser    = random.choice(list(players.keys()))  # Draw the loser that has to drink
             drink    = random.choice(drinks)                # Draw the drink to consume
             
-            fuckers[fucktard] += 1
+            players[loser] += 1
 
             os.system('cls')                                                                                        # Clear the console
-            print('{0}    has to drink  {1}!\n (Total drinks: {2})\n\n'.format(fucktard, drink, fuckers[fucktard])) # Print
+            print('{0}    has to drink  {1}!\n (Total drinks: {2})\n\n'.format(loser, drink, players[loser]))       # Print
+            changeLights.change()                                                                                   # flash the lights
             playsound("C:/Users/Reinder/Source/Huisavond/RandomDrinker/rooster_long.wav")                           # Play sound
 
         print ("\033[A                             \033[A")             # Clear last line of output and put pointer to beginning
@@ -34,4 +36,4 @@ try:
         timer -= 1                                                      # Decrement the timer
         time.sleep(60)                                                  # Wait for a minute
 except: 
-    print(fuckers)
+    print(players)
